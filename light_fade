@@ -12,7 +12,7 @@ void setup() {
 }
 
 void loop() {
-   analogWrite(9, brightness);  //輸出亮度
+   analogWrite(9, increaseAmount);  //輸出亮度
  
   increaseAmount += fadeAmount;
    
