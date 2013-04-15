@@ -1,0 +1,23 @@
+/*
+   Author:C.H Liu goarduinotw@gmail.com
+   last update: 2014.04.15
+   This program is for LED fade in /out
+*/
+
+int increaseAmount = 0; //燈光亮度
+int fadeAmount = 5;   // 燈光亮度增加數值
+
+void setup() {
+   pinMode(9, OUTPUT);    //設定 pin9 為連接點
+}
+
+void loop() {
+   analogWrite(9, brightness);  //輸出亮度
+ 
+  increaseAmount += fadeAmount;
+   
+   if(increaseAmount == 0 || increaseAmount >= 250)  
+      fadeAmount = -fadeAmount;
+   
+   delay(50);      
+} 
