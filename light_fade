@@ -19,5 +19,5 @@ void loop() {
    if(increaseAmount == 0 || increaseAmount >= 250)  
       fadeAmount = -1 * fadeAmount;
    
-   delay(50);      
+   delay(50);
 } 
