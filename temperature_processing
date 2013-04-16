@@ -1,0 +1,32 @@
+import processing.serial.*;
+
+Serial port;
+float temperature, moisture;
+String data = "";
+int idx = 0;
+PFont font;
+
+void setup() {
+   size(350, 300);
+   port = new Serial(this, "COM5", 9600);
+   port.bufferUntil(10);
+   font = loadFont("TimesNewRomanPSMT-48.vlw");
+   textFont(font, 100);
+   data = "";
+}
+
+void draw() {
+  background(0, 0, 0);
+  fill(46, 209, 2);
+  text(temperature, 1, 100);
+  text(moisture, 1, 200);
+}
+
+void serialEvent(Serial port) {
+  data = port.readStringUntil(10);
+  data = data.substring(0, data.length() - 1);
+  if((idx = data.indexOf(",")) > 0)  {
+     temperature = float(data.substring(0, idx));
+     moisture =float(data.substring(idx+1, data.length()));
+  }
+}  
