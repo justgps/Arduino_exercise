@@ -1,0 +1,27 @@
+#include <IRremote.h>
+#include <IRremoteInt.h>
+
+const int irReceiverPin = 2;  //設定接收位置為pin2，為函數內定，若要更改需要改函數定義
+IRrecv irrecv(irReceiverPin);
+decode_results results;
+
+char *factory[] = {"0", "1.NEC", "2.SONY", "3.RC5", "4.RC6", "5.DISH", "6.SHARP"};
+
+void setup() {
+  Serial.begin(9600);
+  irrecv.enableIRIn();  // 啟動紅外線接收器
+}
+
+void loop() {
+  if(irrecv.decode(&results)) {
+    Serial.print("Manufacturer: ");
+    Serial.print(factory[results.decode_type]);
+    Serial.print(" IRCode: ");
+    Serial.print(results.value, HEX);
+    Serial.print(",  bits: ");
+    Serial.print(results.bits);
+    Serial.print(", rawlen: ");
+    Serial.println(results.rawlen);
+    irrecv.resume();                        
+  }
+}  
