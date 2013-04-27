@@ -2,6 +2,8 @@
 
 用來分享Arduino的範例
 
+>HC-4R04 超音波感應器範例
+
 >irReceiver  紅外線接收器範例
 
 >light_fade  LED 燈光明暗控制
