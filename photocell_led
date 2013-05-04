@@ -1,0 +1,31 @@
+/*
+   by Chih-Han Liu
+   date:2013.05.04
+   http://www.justdrink.com.tw/elect/
+*/
+int photocellPin = 2;   // 光敏電阻接腳
+int photocellVal = 0;  //光面電組數值
+int minLight = 300;     // 亮度值，低於此數值會開啟燈光
+int ledPin = 9;         // LED 腳位
+int ledState = 0;       // LED 目前狀態
+
+
+void setup() {
+   pinMode(ledPin, OUTPUT);
+   Serial.begin(9600);
+}
+
+void loop() {
+   photocellVal = analogRead(photocellPin);   //讀取光敏數值
+   Serial.println(photocellVal); 
+   
+   if(photocellVal < minLight && ledState == 0) {
+     digitalWrite(ledPin, HIGH); // turn on LED
+     ledState = 1;
+   }
+   else  if(photocellVal > minLight && ledState == 1) {
+     digitalWrite(ledPin, LOW); // turn off LED
+     ledState = 0;
+   }
+   delay(1000); 
+}
